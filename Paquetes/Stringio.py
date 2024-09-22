@@ -159,7 +159,7 @@ def Apply_Camel_Case(String: str, Separator: str = " ") -> str:
 def Apply_Snake_Case(String: str, Separator: str = " ") -> str:
     return String.replace(Separator, "_").lower()
 
-def Apply_Upper_Snake_Case(String: str, Separator: str = " ") -> str:
+def Apply_Pascal_Snake_Case(String: str, Separator: str = " ") -> str:
     Words = String.split(f'{Separator}')
     Upper_Snake_Case_String = [Word.capitalize() for Word in Words]
     return "_".join(Upper_Snake_Case_String)
@@ -170,6 +170,16 @@ def Apply_Screaming_Snake_Case(String: str, Separator: str = " ") -> str:
 def Apply_Pascal_Case(String: str, Separator: str = " ") -> str:
     Words = String.split(f'{Separator}')
     return ''.join(Word.capitalize() for Word in Words)
+
+def Apply_Flat_Case(String: str, Separator: str = " ") -> str:
+    Words = String.split(f'{Separator}')
+    Flat_Case_String = ''.join(Word.lower() for Word in Words)
+    return Flat_Case_String
+
+def Apply_Upper_Flat_Case(String: str, Separator: str = " ") -> str:
+    Words = String.split(f'{Separator}')
+    Upper_Flat_Case_String = ''.join(Word.upper() for Word in Words)
+    return Upper_Flat_Case_String
 
 # def Clean_Spaces(String: str) -> str:
 

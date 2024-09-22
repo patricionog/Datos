@@ -289,18 +289,22 @@ def Convert_Type_Of_Columns(df: pd.DataFrame, List_Of_Columns: list, Type = str)
                 df[Column] = df[Column].astype(Type)
     return df
 
-def Casing_Column_Names(df: pd.DataFrame, Style: str = 'Upper Snake Case') -> pd.DataFrame:
+def Casing_Column_Names(df: pd.DataFrame, Style: str = 'Pascal Snake Case') -> pd.DataFrame:
     Columns = list(df.columns)
     if Style == 'Camel Case':
         Columns = [Stringio.Apply_Camel_Case(str(Column)) for Column in Columns]
     elif Style == 'Snake Case':
         Columns = [Stringio.Apply_Snake_Case(str(Column)) for Column in Columns]
-    elif Style == 'Upper Snake Case':
-        Columns = [Stringio.Apply_Upper_Snake_Case(str(Column)) for Column in Columns]
+    elif Style == 'Pascal Snake Case':
+        Columns = [Stringio.Apply_Pascal_Snake_Case(str(Column)) for Column in Columns]
     elif Style == 'Screaming Snake Case':
         Columns = [Stringio.Apply_Screaming_Snake_Case(str(Column)) for Column in Columns]
     elif Style == 'Pascal Case':
         Columns = [Stringio.Apply_Pascal_Case(str(Column)) for Column in Columns]
+    elif Style == 'Flat Case':
+        Columns = [Stringio.Apply_Flat_Case(str(Column)) for Column in Columns]
+    elif Style == 'Upper Flat Case':
+        Columns = [Stringio.Apply_Upper_Flat_Case(str(Column)) for Column in Columns]
     
     df.columns = Columns
     return df
