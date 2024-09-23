@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
+from sklearn.cluster import KMeans, DBSCAN
 
 #######################################################################################################################
 # CREATE #
@@ -251,44 +252,52 @@ def Create_Scatter_Plot(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Colors
                          Font_Size = 12, Alpha = 1.0, X_Lim = None, Y_Lim = None, 
                          X_Ticks = None, Y_Ticks = None, X_Ticks_Step = None, Y_Ticks_Step = None, 
                          Annotations = None, File_Name = None, File_Format = 'png', 
-                         Legend = False, Legend_Location = 'best', Legend_Font_Size = 12):
+                         Legend = False, Legend_Location = 'best', Legend_Font_Size = 12,
+                         Cluster_Size = 100, Epsilon = 0.1, Min_Samples = 2, Clustering_Method = None, Jitter = None):
     
     plt.figure(figsize = Figure_Size)
-    
-    plt.scatter(X, Y, color = Colors, alpha = Alpha)
-    
+
+    # Group points only if a clustering method is specified.
+    if Clustering_Method is not None:
+        Coords = np.column_stack((X, Y))
+
+        if Clustering_Method == 'KMeans':
+            N_Clusters = 3
+            Kmeans = KMeans(n_clusters = N_Clusters, random_state = 0).fit(Coords)
+            Labels = Kmeans.labels_
+            
+        elif Clustering_Method == 'DBSCAN':
+            Clustering = DBSCAN(eps = Epsilon, min_samples = Min_Samples).fit(Coords)
+            Labels = Clustering.labels_
+
+        # Plot clusters.
+        Unique_Labels = set(Labels)
+        for Label in Unique_Labels:
+            if Label == -1:  # Noise.
+                continue  
+            Cluster_X = X[Labels == Label]
+            Cluster_Y = Y[Labels == Label]
+            Cluster_Size_Actual = Cluster_Size * len(Cluster_X)  # Proportional to the size of the cluster.
+            plt.scatter(np.mean(Cluster_X), np.mean(Cluster_Y), s = Cluster_Size_Actual, alpha = Alpha, 
+                        label = f'Cluster {Label}')
+
+        # Plot points not in clusters.
+        Points_Not_In_Clusters = Labels == -1
+        plt.scatter(X[Points_Not_In_Clusters], Y[Points_Not_In_Clusters], color = 'gray', alpha = Alpha, 
+                    label = 'Individual Points')
+    else:
+        # If no clustering method is specified, plot all points individually.
+        plt.scatter(X, Y, color=Colors, alpha=Alpha, label='All Points')
+
     if Title:
         plt.title(Title, fontsize = Font_Size)
+
     plt.xlabel(X_Label, fontsize = Font_Size)
     plt.ylabel(Y_Label, fontsize = Font_Size)
 
-    Combined_X_Ticks = set()
-    if X_Ticks is not None:
-        Combined_X_Ticks.update(X_Ticks)
-    if X_Ticks_Step is not None and X_Lim is not None:
-        Combined_X_Ticks.update(np.arange(X_Lim[0], X_Lim[1] + 1, step = X_Ticks_Step))
-    
-    plt.xticks(sorted(Combined_X_Ticks))
-    
-    Combined_Y_Ticks = set()
-    if Y_Ticks is not None:
-        Combined_Y_Ticks.update(Y_Ticks)
-    if Y_Ticks_Step is not None and Y_Lim is not None:
-        Combined_Y_Ticks.update(np.arange(Y_Lim[0], Y_Lim[1] + 1, step = Y_Ticks_Step))
-    
-    plt.yticks(sorted(Combined_Y_Ticks))
-
-    if Grid:
-        plt.grid(True)
-    
-    if Annotations:
-        for annotation in Annotations:
-            plt.annotate(annotation['text'], xy = annotation['xy'], xytext = annotation['xytext'], 
-                         arrowprops = annotation.get('arrowprops', {}))
-    
     if Legend:
         plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
-    
+
     if File_Name:
         plt.savefig(f'{File_Name}.{File_Format}', format = File_Format, bbox_inches = 'tight')
     

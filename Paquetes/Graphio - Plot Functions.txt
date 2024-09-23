@@ -297,7 +297,7 @@
 
 - **File_Format** (str, optional, default = 'png'):
     Format for saving the box plot file. Options: 'png', 'jpg', 'pdf', etc.
-
+    
 ########################################################################
 # Create_Scatter_Plot
 ########################################################################
@@ -322,11 +322,8 @@
 - **Colors** (list of str, optional): 
     List of colors for the points. Options: any valid Matplotlib color.
 
-- **Alpha** (float, optional, default = 0.6):
+- **Alpha** (float, optional, default = 1.0):
     Opacity of the points (0 to 1). Options: any float in the range [0, 1].
-
-- **Size** (int or list of int, optional, default = 20):
-    Size of the points. Options: any positive integer or a list of sizes corresponding to each point.
 
 - **Grid** (bool, optional, default = True):
     Whether to display a grid. Options: `True` or `False`.
@@ -352,11 +349,17 @@
 - **Legend_Font_Size** (int, optional, default = 12):
     Font size for the legend. Options: any positive integer.
 
-- **Horizontal_Lines** (list of float, optional): 
-    List of y-values for horizontal lines to be drawn. Options: any list of floats.
+- **Cluster_Size** (int, optional, default = 100):
+    Size of the points for clustered groups. Options: any positive integer.
 
-- **Vertical_Lines** (list of float, optional): 
-    List of x-values for vertical lines to be drawn. Options: any list of floats.
+- **Epsilon** (float, optional, default = 0.1):
+    Maximum distance between points for them to be considered in the same cluster. Options: any positive float.
+
+- **Min_Samples** (int, optional, default = 2):
+    Minimum number of points required to form a cluster. Options: any positive integer.
+
+- **Jitter** (float, optional, default = None):
+    Standard deviation of the jitter to be added to the coordinates. Options: any positive float.
 
 - **Annotations** (list of dict, optional): 
     List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
@@ -366,6 +369,9 @@
 
 - **File_Format** (str, optional, default = 'png'):
     Format for saving the scatter plot file. Options: 'png', 'jpg', 'pdf', etc.
+
+- **Clustering_Method** (str, optional, default = None):
+    The method for clustering points. Options: 'KMeans', 'DBSCAN', or None (to plot all points individually).
 
 ########################################################################
 # Create_Violin_Plot
