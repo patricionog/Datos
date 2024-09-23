@@ -7,10 +7,10 @@
 # Parameters:
 
 - **X** (array-like):
-    The data for the x-axis.
+    The data for the x-axis. This can be a list of x data arrays or a DataFrame with multiple columns for each line.
 
 - **Y** (array-like):
-    The data for the y-axis.
+    The data for the y-axis. This can be a list of y data arrays or a DataFrame with multiple columns for each line.
 
 - **Title** (str, optional, default = None):
     The title of the plot.
@@ -21,8 +21,8 @@
 - **Y_Label** (str, optional, default = 'Y'):
     Label for the y-axis.
 
-- **Color** (str, optional, default = 'blue'):
-    Color of the line and markers.
+- **Colors** (list of str, optional): 
+    List of colors for each line. If not provided, default color will be used.
 
 - **Grid** (bool, optional, default = True):
     Whether to display a grid.
@@ -42,8 +42,8 @@
 - **Y_Lim** (tuple, optional, default = None):
     The limits of the y-axis as a tuple `(min, max)`.
 
-- **Legend** (bool, optional, default = False):
-    Whether to display a legend.
+- **Labels** (list of str, optional): 
+    List of labels for each line if the legend is enabled.
 
 - **Legend_Location** (str, optional, default = 'best'):
     The location of the legend.

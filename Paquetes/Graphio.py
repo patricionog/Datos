@@ -13,16 +13,18 @@ import seaborn as sns
 
 def Create_Line_Plot(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Colors = None, Grid = True, Figure_Size = (10, 6), 
                      Font_Size = 12, Alpha = 1.0, X_Lim = None, Y_Lim = None, X_Scale = 'linear', Y_Scale = 'linear',
-                     Label = None, Legend = False, Legend_Location = 'best', Legend_Font_Size = 12, 
+                     Labels = None, Legend = False, Legend_Location = 'best', Legend_Font_Size = 12, 
                      Marker_Style = 'o', Line_Style = '-', Line_Width = 2, Horizontal_Lines = None, Vertical_Lines = None, 
                      Annotations = None, File_Name = None, File_Format = 'png', X_Label_Rotation = 0):
     
     plt.figure(figsize = Figure_Size)
     
-    if Colors:
-        plt.plot(X, Y, color = Colors[0], marker = Marker_Style, linestyle = Line_Style, linewidth = Line_Width, alpha = Alpha, label = Label)
-    else:
-        plt.plot(X, Y, marker = Marker_Style, linestyle = Line_Style, linewidth = Line_Width, alpha = Alpha, label = Label)
+    for i in range(len(Y)):
+        Color = Colors[i] if Colors else None
+        Label = Labels[i] if Labels and Legend else None
+        
+        plt.plot(X[i], Y[i], color = Color, marker = Marker_Style, linestyle = Line_Style, linewidth = Line_Width, 
+                 alpha = Alpha, label = Label)
     
     plt.xscale(X_Scale)
     plt.yscale(Y_Scale)
@@ -54,7 +56,7 @@ def Create_Line_Plot(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Colors = 
             plt.annotate(annotation['text'], xy = annotation['xy'], xytext = annotation['xytext'], 
                          arrowprops = annotation.get('arrowprops', {}))
     
-    if Legend and Label:
+    if Legend and Labels:
         plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
     
     if File_Name:
