@@ -1,90 +1,249 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
 #######################################################################################################################
 # CREATE #
 #######################################################################################################################
 
-def Create_Line_Plot(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Color = 'blue', Grid = True, Figure_Size = (10, 6), 
-                     Font_Size = 12, Alpha = 1.0):
-    
-    plt.figure(figsize=Figure_Size)
-    plt.plot(X, Y, color = Color, marker = 'o', alpha = Alpha)
-    if Title:
-        plt.title(Title, fontsize=Font_Size)
-    plt.xlabel(X_Label, fontsize=Font_Size)
-    plt.ylabel(Y_Label, fontsize=Font_Size)
-    if Grid:
-        plt.grid(True)
-    plt.show()
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-def Create_Histogram(Data, Title = None, X_Label = 'X', Y_Label = 'Y', Bins = 10, Color = 'blue', Alpha = 0.7, 
-                     Grid = True, Figure_Size = (10, 6), Font_Size = 12):
-    
-    plt.figure(figsize=Figure_Size)
-    plt.hist(Data, bins = Bins, color = Color, alpha = Alpha)
-    if Title:
-        plt.title(Title, fontsize=Font_Size)
-    plt.xlabel(X_Label, fontsize=Font_Size)
-    plt.ylabel(Y_Label, fontsize=Font_Size)
-    if Grid:
-        plt.grid(True)
-    plt.show()
+# See documentation in "Graphio - Plot Functions.txt" for parameter options.
 
-def Create_Bar_Plot(Categories, Values, Title = None, X_Label = 'X', Y_Label = 'Y', Color = 'blue', Grid = True, Figure_Size = (10, 6), 
-                    Font_Size = 12, Orientation = 'vertical'):
+def Create_Line_Plot(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Colors = None, Grid = True, Figure_Size = (10, 6), 
+                     Font_Size = 12, Alpha = 1.0, X_Lim = None, Y_Lim = None, X_Scale = 'linear', Y_Scale = 'linear',
+                     Label = None, Legend = False, Legend_Location = 'best', Legend_Font_Size = 12, 
+                     Marker_Style = 'o', Line_Style = '-', Line_Width = 2, Horizontal_Lines = None, Vertical_Lines = None, 
+                     Annotations = None, File_Name = None, File_Format = 'png', X_Label_Rotation = 0):
     
-    plt.figure(figsize=Figure_Size)
-    if Orientation == 'horizontal':
-        plt.barh(Categories, Values, color = Color)
+    plt.figure(figsize = Figure_Size)
+    
+    if Colors:
+        plt.plot(X, Y, color = Colors[0], marker = Marker_Style, linestyle = Line_Style, linewidth = Line_Width, alpha = Alpha, label = Label)
     else:
-        plt.bar(Categories, Values, color = Color)
-        
+        plt.plot(X, Y, marker = Marker_Style, linestyle = Line_Style, linewidth = Line_Width, alpha = Alpha, label = Label)
+    
+    plt.xscale(X_Scale)
+    plt.yscale(Y_Scale)
+    
+    if X_Lim:
+        plt.xlim(X_Lim)
+    if Y_Lim:
+        plt.ylim(Y_Lim)
+    
     if Title:
-        plt.title(Title, fontsize=Font_Size)
-    plt.xlabel(X_Label, fontsize=Font_Size)
-    plt.ylabel(Y_Label, fontsize=Font_Size)
+        plt.title(Title, fontsize = Font_Size)
+    plt.xlabel(X_Label, fontsize = Font_Size)
+    plt.ylabel(Y_Label, fontsize = Font_Size)
+    
+    plt.xticks(rotation = X_Label_Rotation)
+    
     if Grid:
-        plt.grid(axis='y')
+        plt.grid(True)
+    
+    if Horizontal_Lines:
+        for line in Horizontal_Lines:
+            plt.axhline(y = line, color = 'gray', linestyle = '--')
+    if Vertical_Lines:
+        for line in Vertical_Lines:
+            plt.axvline(x = line, color = 'gray', linestyle = '--')
+    
+    if Annotations:
+        for annotation in Annotations:
+            plt.annotate(annotation['text'], xy = annotation['xy'], xytext = annotation['xytext'], 
+                         arrowprops = annotation.get('arrowprops', {}))
+    
+    if Legend and Label:
+        plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
+    
+    if File_Name:
+        plt.savefig(f'{File_Name}.{File_Format}', format = File_Format, bbox_inches = 'tight')
+    
     plt.show()
 
-def Create_Box_Plot(Data, Title = None, X_Label = 'X', Y_Label = 'Y', Grid = True, Figure_Size = (10, 6), Font_Size = 12):
+def Create_Histogram(Data, Title = None, X_Label = 'X', Y_Label = 'Y', Bins = 10, Colors = None, Alpha = 0.7, 
+                     Grid = True, Figure_Size = (10, 6), Font_Size = 12, X_Lim = None, Y_Lim = None, 
+                     Legend = False, Legend_Location = 'best', Legend_Font_Size = 12, 
+                     Horizontal_Lines = None, Vertical_Lines = None, Annotations = None, File_Name = None, File_Format = 'png'):
     
-    plt.figure(figsize=Figure_Size)
+    plt.figure(figsize = Figure_Size)
+    
+    if Colors:
+        plt.hist(Data, bins = Bins, color = Colors[0], alpha = Alpha, label = X_Label)
+    else:
+        plt.hist(Data, bins = Bins, alpha = Alpha, label = X_Label)
+    
+    if X_Lim:
+        plt.xlim(X_Lim)
+    if Y_Lim:
+        plt.ylim(Y_Lim)
+    
+    if Title:
+        plt.title(Title, fontsize = Font_Size)
+    plt.xlabel(X_Label, fontsize = Font_Size)
+    plt.ylabel(Y_Label, fontsize = Font_Size)
+    
+    if Grid:
+        plt.grid(True)
+    
+    if Horizontal_Lines:
+        for line in Horizontal_Lines:
+            plt.axhline(y = line, color = 'gray', linestyle = '--')
+    if Vertical_Lines:
+        for line in Vertical_Lines:
+            plt.axvline(x = line, color = 'gray', linestyle = '--')
+    
+    if Annotations:
+        for annotation in Annotations:
+            plt.annotate(annotation['text'], xy = annotation['xy'], xytext = annotation['xytext'], 
+                         arrowprops = annotation.get('arrowprops', {}))
+    
+    if Legend:
+        plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
+    
+    if File_Name:
+        plt.savefig(f'{File_Name}.{File_Format}', format = File_Format, bbox_inches = 'tight')
+    
+    plt.show()
+
+def Create_Bar_Plot(Categories, Values, Title = None, X_Label = 'X', Y_Label = 'Y', Colors = None, Grid = True, Figure_Size = (10, 6), 
+                    Font_Size = 12, Orientation = 'vertical', X_Lim = None, Y_Lim = None, Legend = False, 
+                    Legend_Location = 'best', Legend_Font_Size = 12, File_Name = None, File_Format = 'png'):
+    
+    plt.figure(figsize = Figure_Size)
+    
+    if Colors:
+        if Orientation == 'horizontal':
+            plt.barh(Categories, Values, color = Colors)
+        else:
+            plt.bar(Categories, Values, color = Colors)
+    else:
+        if Orientation == 'horizontal':
+            plt.barh(Categories, Values)
+        else:
+            plt.bar(Categories, Values)
+    
+    if X_Lim:
+        plt.xlim(X_Lim)
+    if Y_Lim:
+        plt.ylim(Y_Lim)
+    
+    if Title:
+        plt.title(Title, fontsize = Font_Size)
+    plt.xlabel(X_Label, fontsize = Font_Size)
+    plt.ylabel(Y_Label, fontsize = Font_Size)
+    
+    if Grid:
+        plt.grid(axis = 'y')
+    
+    if Legend:
+        plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
+    
+    if File_Name:
+        plt.savefig(f'{File_Name}.{File_Format}', format = File_Format, bbox_inches = 'tight')
+    
+    plt.show()
+
+def Create_Box_Plot(Data, Title = None, X_Label = 'X', Y_Label = 'Y', Grid = True, Figure_Size = (10, 6), 
+                    Font_Size = 12, X_Lim = None, Y_Lim = None, Legend = False, Legend_Location = 'best', 
+                    Legend_Font_Size = 12, File_Name = None, File_Format = 'png'):
+    
+    plt.figure(figsize = Figure_Size)
     sns.boxplot(data = Data)
+    
+    if X_Lim:
+        plt.xlim(X_Lim)
+    if Y_Lim:
+        plt.ylim(Y_Lim)
+    
     if Title:
-        plt.title(Title, fontsize=Font_Size)
-    plt.xlabel(X_Label, fontsize=Font_Size)
-    plt.ylabel(Y_Label, fontsize=Font_Size)
+        plt.title(Title, fontsize = Font_Size)
+    plt.xlabel(X_Label, fontsize = Font_Size)
+    plt.ylabel(Y_Label, fontsize = Font_Size)
+    
     if Grid:
         plt.grid(True)
+    
+    if Legend:
+        plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
+    
+    if File_Name:
+        plt.savefig(f'{File_Name}.{File_Format}', format = File_Format, bbox_inches = 'tight')
+    
     plt.show()
 
-def Create_Scatter_Plot_With_Regression(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Color = 'blue', Grid = True, Figure_Size = (10, 6), 
-                                         Font_Size = 12, Alpha = 1.0):
+def Create_Scatter_Plot_With_Regression(X, Y, Title = None, X_Label = 'X', Y_Label = 'Y', Colors = None, Grid = True, 
+                                         Figure_Size = (10, 6), Font_Size = 12, Alpha = 1.0, X_Lim = None, Y_Lim = None, 
+                                         X_Scale = 'linear', Y_Scale = 'linear', Legend = False, Legend_Location = 'best', 
+                                         Legend_Font_Size = 12, Horizontal_Lines = None, Vertical_Lines = None, 
+                                         Annotations = None, File_Name = None, File_Format = 'png'):
     
-    plt.figure(figsize=Figure_Size)
-    sns.regplot(x = X, y = Y, scatter_kws = {'color': Color, 'alpha': Alpha}, 
-                line_kws = {'color': 'red'})
+    plt.figure(figsize = Figure_Size)
+    
+    if Colors:
+        sns.regplot(x = X, y = Y, scatter_kws = {'color': Colors[0], 'alpha': Alpha}, line_kws = {'color': 'red'})
+    else:
+        sns.regplot(x = X, y = Y, scatter_kws = {'alpha': Alpha}, line_kws = {'color': 'red'})
+    
+    plt.xscale(X_Scale)
+    plt.yscale(Y_Scale)
+    
+    if X_Lim:
+        plt.xlim(X_Lim)
+    if Y_Lim:
+        plt.ylim(Y_Lim)
+    
     if Title:
-        plt.title(Title, fontsize=Font_Size)
-    plt.xlabel(X_Label, fontsize=Font_Size)
-    plt.ylabel(Y_Label, fontsize=Font_Size)
+        plt.title(Title, fontsize = Font_Size)
+    plt.xlabel(X_Label, fontsize = Font_Size)
+    plt.ylabel(Y_Label, fontsize = Font_Size)
+    
     if Grid:
         plt.grid(True)
+    
+    if Horizontal_Lines:
+        for line in Horizontal_Lines:
+            plt.axhline(y = line, color = 'gray', linestyle = '--')
+    if Vertical_Lines:
+        for line in Vertical_Lines:
+            plt.axvline(x = line, color = 'gray', linestyle = '--')
+    
+    if Annotations:
+        for annotation in Annotations:
+            plt.annotate(annotation['text'], xy = annotation['xy'], xytext = annotation['xytext'], 
+                         arrowprops = annotation.get('arrowprops', {}))
+    
+    if Legend:
+        plt.legend(loc = Legend_Location, fontsize = Legend_Font_Size)
+    
+    if File_Name:
+        plt.savefig(f'{File_Name}.{File_Format}', format = File_Format, bbox_inches = 'tight')
+    
     plt.show()
 
-def Create_Violin_Plot(Data, Title = None, X_Label = 'X', Y_Label = 'Y', 
-                       Grid = True, Figure_Size = (10, 6), Font_Size = 12):
+def Create_Violin_Plot(Data, Title = None, X_Label = 'X', Y_Label = 'Y', Grid = True, Figure_Size = (10, 6), 
+                       Font_Size = 12, X_Lim = None, Y_Lim = None, Label = None, Legend = False):
     
     plt.figure(figsize=Figure_Size)
-    sns.violinplot(data = Data)
+    sns.violinplot(data=Data)
+    
+    if X_Lim:
+        plt.xlim(X_Lim)
+    if Y_Lim:
+        plt.ylim(Y_Lim)
+    
     if Title:
         plt.title(Title, fontsize=Font_Size)
     plt.xlabel(X_Label, fontsize=Font_Size)
     plt.ylabel(Y_Label, fontsize=Font_Size)
+    
     if Grid:
         plt.grid(True)
+    
+    if Legend and Label:
+        plt.legend()
+    
     plt.show()
 
 #######################################################################################################################
@@ -137,4 +296,45 @@ def Create_Subplots(Plot_Functions, Titles = None, Rows = 1, Columns = 1, Figure
     plt.tight_layout()
     plt.show()
 
+#######################################################################################################################
+# CORRELATIONS #
+#######################################################################################################################
 
+def Correlation_Heatmap(df: pd.DataFrame, 
+                                    Title = None, 
+                                    X_Label = None,
+                                    Y_Label = None,
+                                    File = None):
+    
+    """
+    Creates a half-masked heatmap of the correlation matrix from the input DataFrame.
+    Only the lower triangular part of the heatmap is shown, while the upper part is masked.
+
+    Example:
+    Half_Masked_Correlation_Heatmap(df, Title="Correlation Heatmap", File="heatmap.png")
+
+    """
+
+    plt.figure(figsize = (9,9))
+    sns.set(font_scale = 1)
+
+    # Mask of zeros with the same size of the matrix of correlation.
+    Mask = np.zeros_like(df.corr())
+
+    # Hide a half part of the matrix.
+    Mask[np.triu_indices_from(Mask)] = True
+
+    with sns.axes_style('white'):
+        sns.heatmap(df.corr(), mask = Mask, annot = True, cmap = 'coolwarm')
+    
+    if Title:
+        plt.title(Title)
+        plt.xlabel(X_Label)
+        plt.ylabel(Y_Label)
+
+    if File:
+        plt.savefig(File, bbox_inches = 'tight')
+    
+    plt.show()
+
+    return

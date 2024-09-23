@@ -1,0 +1,351 @@
+# Plot Functions Documentation
+
+########################################################################
+# Create_Line_Plot
+########################################################################
+
+# Parameters:
+
+- **X** (array-like):
+    The data for the x-axis.
+
+- **Y** (array-like):
+    The data for the y-axis.
+
+- **Title** (str, optional, default = None):
+    The title of the plot.
+
+- **X_Label** (str, optional, default = 'X'):
+    Label for the x-axis.
+
+- **Y_Label** (str, optional, default = 'Y'):
+    Label for the y-axis.
+
+- **Color** (str, optional, default = 'blue'):
+    Color of the line and markers.
+
+- **Grid** (bool, optional, default = True):
+    Whether to display a grid.
+
+- **Figure_Size** (tuple, optional, default = (10, 6)):
+    Size of the figure in inches.
+
+- **Font_Size** (int, optional, default = 12):
+    Font size for title and labels.
+
+- **Alpha** (float, optional, default = 1.0):
+    Opacity of the markers (0 to 1).
+
+- **X_Lim** (tuple, optional, default = None):
+    The limits of the x-axis as a tuple `(min, max)`.
+
+- **Y_Lim** (tuple, optional, default = None):
+    The limits of the y-axis as a tuple `(min, max)`.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display a legend.
+
+- **Legend_Location** (str, optional, default = 'best'):
+    The location of the legend.
+
+- **Legend_Font_Size** (int, optional, default = 12):
+    Font size for the legend text.
+
+- **File_Name** (str, optional, default = None):
+    Name for saving the figure.
+
+- **File_Format** (str, optional, default = 'png'):
+    Format to save the file.
+
+########################################################################
+# Create_Histogram
+########################################################################
+
+# Parameters:
+
+- **Data** (array-like):
+    The data to be plotted in the histogram.
+
+- **Title** (str, optional, default = None):
+    The title of the plot.
+
+- **X_Label** (str, optional, default = 'X'):
+    Label for the x-axis.
+
+- **Y_Label** (str, optional, default = 'Y'):
+    Label for the y-axis.
+
+- **Bins** (int, optional, default = 10):
+    Number of bins for the histogram.
+
+- **Color** (str, optional, default = 'blue'):
+    Color of the bars.
+
+- **Alpha** (float, optional, default = 0.7):
+    Opacity of the bars.
+
+- **Grid** (bool, optional, default = True):
+    Whether to display a grid.
+
+- **Figure_Size** (tuple, optional, default = (10, 6)):
+    Size of the figure in inches.
+
+- **Font_Size** (int, optional, default = 12):
+    Font size for title and labels.
+
+- **X_Lim** (tuple, optional, default = None):
+    The limits of the x-axis as a tuple `(min, max)`.
+
+- **Y_Lim** (tuple, optional, default = None):
+    The limits of the y-axis as a tuple `(min, max)`.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display a legend.
+
+- **Legend_Location** (str, optional, default = 'best'):
+    The location of the legend.
+
+- **Legend_Font_Size** (int, optional, default = 12):
+    Font size for the legend text.
+
+- **File_Name** (str, optional, default = None):
+    Name for saving the figure.
+
+- **File_Format** (str, optional, default = 'png'):
+    Format to save the file.
+
+########################################################################
+# Create_Bar_Plot
+########################################################################
+
+# Parameters:
+
+- **Categories** (array-like):
+    Categories to be represented on the x-axis.
+
+- **Values** (array-like):
+    Heights of the bars corresponding to each category.
+
+- **Title** (str, optional, default = None):
+    The title of the plot.
+
+- **X_Label** (str, optional, default = 'X'):
+    Label for the x-axis.
+
+- **Y_Label** (str, optional, default = 'Y'):
+    Label for the y-axis.
+
+- **Color** (str, optional, default = 'blue'):
+    Color of the bars.
+
+- **Grid** (bool, optional, default = True):
+    Whether to display a grid.
+
+- **Figure_Size** (tuple, optional, default = (10, 6)):
+    Size of the figure in inches.
+
+- **Font_Size** (int, optional, default = 12):
+    Font size for title and labels.
+
+- **Orientation** (str, optional, default = 'vertical'):
+    Orientation of the bars. Options:
+    - `'vertical'`: Vertical bars (default).
+    - `'horizontal'`: Horizontal bars.
+
+- **X_Lim** (tuple, optional, default = None):
+    The limits of the x-axis as a tuple `(min, max)`.
+
+- **Y_Lim** (tuple, optional, default = None):
+    The limits of the y-axis as a tuple `(min, max)`.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display a legend.
+
+- **Legend_Location** (str, optional, default = 'best'):
+    The location of the legend.
+
+- **Legend_Font_Size** (int, optional, default = 12):
+    Font size for the legend text.
+
+- **File_Name** (str, optional, default = None):
+    Name for saving the figure.
+
+- **File_Format** (str, optional, default = 'png'):
+    Format to save the file.
+
+########################################################################
+# Create_Box_Plot
+########################################################################
+
+# Parameters:
+
+- **Data** (array-like, DataFrame):
+    The data to be visualized in the box plot.
+
+- **Title** (str, optional, default = None):
+    The title of the plot.
+
+- **X_Label** (str, optional, default = 'X'):
+    Label for the x-axis.
+
+- **Y_Label** (str, optional, default = 'Y'):
+    Label for the y-axis.
+
+- **Grid** (bool, optional, default = True):
+    Whether to display a grid.
+
+- **Figure_Size** (tuple, optional, default = (10, 6)):
+    Size of the figure in inches.
+
+- **Font_Size** (int, optional, default = 12):
+    Font size for title and labels.
+
+- **X_Lim** (tuple, optional, default = None):
+    The limits of the x-axis as a tuple `(min, max)`.
+
+- **Y_Lim** (tuple, optional, default = None):
+    The limits of the y-axis as a tuple `(min, max)`.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display a legend.
+
+- **Legend_Location** (str, optional, default = 'best'):
+    The location of the legend.
+
+- **Legend_Font_Size** (int, optional, default = 12):
+    Font size for the legend text.
+
+- **File_Name** (str, optional, default = None):
+    Name for saving the figure.
+
+- **File_Format** (str, optional, default = 'png'):
+    Format to save the file.
+
+########################################################################
+# Create_Scatter_Plot_With_Regression
+########################################################################
+
+# Parameters:
+
+- **X** (array-like):
+    The data for the x-axis.
+
+- **Y** (array-like):
+    The data for the y-axis.
+
+- **Title** (str, optional, default = None):
+    The title of the plot.
+
+- **X_Label** (str, optional, default = 'X'):
+    Label for the x-axis.
+
+- **Y_Label** (str, optional, default = 'Y'):
+    Label for the y-axis.
+
+- **Color** (str, optional, default = 'blue'):
+    Color of the scatter points.
+
+- **Grid** (bool, optional, default = True):
+    Whether to display a grid.
+
+- **Figure_Size** (tuple, optional, default = (10, 6)):
+    Size of the figure in inches.
+
+- **Font_Size** (int, optional, default = 12):
+    Font size for title and labels.
+
+- **Alpha** (float, optional, default = 1.0):
+    Opacity of the scatter points (0 to 1).
+
+- **X_Lim** (tuple, optional, default = None):
+    The limits of the x-axis as a tuple `(min, max)`.
+
+- **Y_Lim** (tuple, optional, default = None):
+    The limits of the y-axis as a tuple `(min, max)`.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display a legend.
+
+- **Legend_Location** (str, optional, default = 'best'):
+    The location of the legend.
+
+- **Legend_Font_Size** (int, optional, default = 12):
+    Font size for the legend text.
+
+- **File_Name** (str, optional, default = None):
+    Name for saving the figure.
+
+- **File_Format** (str, optional, default = 'png'):
+    Format to save the file.
+
+########################################################################
+# Violin Plot Function Documentation
+########################################################################
+
+# Parameters:
+
+- **Data** (array-like, DataFrame):
+    The dataset to plot. It can be a list, array, or pandas DataFrame.
+
+- **Title** (str, optional, default = None):
+    The title of the plot. If not provided, the plot will not have a title.
+
+- **X_Label** (str, optional, default = 'X'):
+    Label for the x-axis.
+
+- **Y_Label** (str, optional, default = 'Y'):
+    Label for the y-axis.
+
+- **Grid** (bool, optional, default = True):
+    Whether to display a grid on the plot. Options:
+    - `True`: Displays the grid.
+    - `False`: Hides the grid.
+
+- **Figure_Size** (tuple, optional, default = (10, 6)):
+    The size of the figure as a tuple `(width, height)` in inches.
+
+- **Font_Size** (int, optional, default = 12):
+    The font size for the title, x-axis, and y-axis labels.
+
+- **X_Lim** (tuple, optional, default = None):
+    The limits of the x-axis as a tuple `(min, max)`. If `None`, the limits are determined automatically.
+
+- **Y_Lim** (tuple, optional, default = None):
+    The limits of the y-axis as a tuple `(min, max)`. If `None`, the limits are determined automatically.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display a legend on the plot. Options:
+    - `True`: Displays the legend.
+    - `False`: No legend is shown.
+
+- **Legend_Location** (str, optional, default = 'best'):
+    The location of the legend. Common options include:
+    - `'best'`: Automatically choose the best location.
+    - `'upper right'`, `'upper left'`, `'lower left'`, `'lower right'`
+    - `'center'`, `'center left'`, `'center right'`
+
+- **Legend_Font_Size** (int, optional, default = 12):
+    The font size for the legend text.
+
+- **Split** (bool, optional, default = False):
+    Whether to split the violins for different categories. Useful if the data contains multiple categories to compare distributions. Options:
+    - `True`: Split the violins.
+    - `False`: No splitting (default).
+
+- **Inner** (str, optional, default = 'box'):
+    Defines the marks to plot inside the violins. Options:
+    - `'box'`: A box plot inside the violin.
+    - `'point'`: Individual data points inside the violin.
+    - `'stick'`: A stick plot (like rug plot) inside the violin.
+    - `None`: No inner plot.
+
+- **File_Name** (str, optional, default = None):
+    Name for saving the figure. If `None`, the figure will not be saved.
+
+- **File_Format** (str, optional, default = 'png'):
+    The format to save the file in. Options include:
+    - `'png'`: Portable Network Graphics (default).
+    - `'pdf'`: PDF format.
+    - `'svg'`: Scalable Vector Graphics.
+    - `'jpg'`: JPEG format.
+
