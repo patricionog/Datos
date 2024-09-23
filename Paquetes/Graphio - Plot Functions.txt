@@ -1,5 +1,3 @@
-# Plot Functions Documentation
-
 ########################################################################
 # Create_Line_Plot
 ########################################################################
@@ -7,55 +5,106 @@
 # Parameters:
 
 - **X** (array-like):
-    The data for the x-axis. This can be a list of x data arrays or a DataFrame with multiple columns for each line.
+    The data for the x-axis. This can be a list of x data arrays or a DataFrame with multiple columns for each line. Options: list, array, or DataFrame.
 
 - **Y** (array-like):
-    The data for the y-axis. This can be a list of y data arrays or a DataFrame with multiple columns for each line.
+    The data for the y-axis. This can be a list of y data arrays or a DataFrame with multiple columns for each line. Options: list, array, or DataFrame.
 
 - **Title** (str, optional, default = None):
-    The title of the plot.
+    The title of the plot. Options: any string.
 
 - **X_Label** (str, optional, default = 'X'):
-    Label for the x-axis.
+    Label for the x-axis. Options: any string.
 
 - **Y_Label** (str, optional, default = 'Y'):
-    Label for the y-axis.
+    Label for the y-axis. Options: any string.
 
 - **Colors** (list of str, optional): 
-    List of colors for each line. If not provided, default color will be used.
+    List of colors for each line. Options: any valid Matplotlib color (e.g., 'red', '#FF5733').
 
 - **Grid** (bool, optional, default = True):
-    Whether to display a grid.
+    Whether to display a grid. Options: `True` or `False`.
 
 - **Figure_Size** (tuple, optional, default = (10, 6)):
-    Size of the figure in inches.
+    Size of the figure in inches. Options: `(width, height)` as positive numbers.
 
 - **Font_Size** (int, optional, default = 12):
-    Font size for title and labels.
+    Font size for title and labels. Options: any positive integer.
 
 - **Alpha** (float, optional, default = 1.0):
-    Opacity of the markers (0 to 1).
+    Opacity of the markers (0 to 1). Options: any float in the range [0, 1].
 
 - **X_Lim** (tuple, optional, default = None):
-    The limits of the x-axis as a tuple `(min, max)`.
+    The limits of the x-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Y_Lim** (tuple, optional, default = None):
-    The limits of the y-axis as a tuple `(min, max)`.
+    The limits of the y-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
+
+- **X_Scale** (str, optional, default = 'linear'):
+    Scale type for the x-axis. Options: 'linear', 'log'.
+
+- **Y_Scale** (str, optional, default = 'linear'):
+    Scale type for the y-axis. Options: 'linear', 'log'.
 
 - **Labels** (list of str, optional): 
-    List of labels for each line if the legend is enabled.
+    List of labels for each line if the legend is enabled. Options: any list of strings.
+
+- **Legend** (bool, optional, default = False):
+    Whether to display the legend. Options: `True` or `False`.
 
 - **Legend_Location** (str, optional, default = 'best'):
-    The location of the legend.
+    The location of the legend. Options: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'.
 
 - **Legend_Font_Size** (int, optional, default = 12):
-    Font size for the legend text.
+    Font size for the legend. Options: any positive integer.
+
+- **Marker_Styles** (str or list of str, optional, default = 'o'):
+    Marker style for the data points. Options: any valid Matplotlib marker style (e.g., 'o', 's', '^').
+
+- **Line_Styles** (str or list of str, optional, default = '-'):
+    Line style for the plot. Options: any valid Matplotlib line style (e.g., '-', '--', ':').
+
+- **Line_Width** (int, optional, default = 2):
+    Width of the lines. Options: any positive integer.
+
+- **Horizontal_Lines** (list of float, optional): 
+    List of y-values for horizontal lines to be drawn. Options: any list of floats.
+
+- **Vertical_Lines** (list of float, optional): 
+    List of x-values for vertical lines to be drawn. Options: any list of floats.
+
+- **Annotations** (list of dict, optional): 
+    List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
 
 - **File_Name** (str, optional, default = None):
-    Name for saving the figure.
+    Name for saving the plot file. Options: any string.
 
 - **File_Format** (str, optional, default = 'png'):
-    Format to save the file.
+    Format for saving the plot file. Options: 'png', 'jpg', 'pdf', etc.
+
+- **X_Label_Rotation** (int, optional, default = 0):
+    Rotation angle for the x-axis labels in degrees. Options: any integer.
+
+- **Title_Pad** (int, optional, default = 20):
+    Padding between the title and the plot. Options: any positive integer.
+
+- **X_Label_Pad** (int, optional, default = 10):
+    Padding between the x-axis label and the plot. Options: any positive integer.
+
+- **Y_Label_Pad** (int, optional, default = 10):
+    Padding between the y-axis label and the plot. Options: any positive integer.
+
+- **X_Ticks_Step** (int, optional): 
+    Step size for generating x-ticks. Options: any positive integer.
+
+- **Y_Ticks_Step** (int, optional): 
+    Step size for generating y-ticks. Options: any positive integer.
+
+- **X_Ticks** (list of float, optional): 
+    Specific x-tick positions. Options: any list of floats.
+
+- **Y_Ticks** (list of float, optional): 
+    Specific y-tick positions. Options: any list of floats.
 
 ########################################################################
 # Create_Histogram
@@ -64,55 +113,64 @@
 # Parameters:
 
 - **Data** (array-like):
-    The data to be plotted in the histogram.
+    The data to be plotted in the histogram. Options: list or array.
 
 - **Title** (str, optional, default = None):
-    The title of the plot.
+    The title of the histogram. Options: any string.
 
 - **X_Label** (str, optional, default = 'X'):
-    Label for the x-axis.
+    Label for the x-axis. Options: any string.
 
 - **Y_Label** (str, optional, default = 'Y'):
-    Label for the y-axis.
+    Label for the y-axis. Options: any string.
 
 - **Bins** (int, optional, default = 10):
-    Number of bins for the histogram.
+    Number of bins for the histogram. Options: any positive integer.
 
-- **Color** (str, optional, default = 'blue'):
-    Color of the bars.
+- **Colors** (list of str, optional): 
+    List of colors for the histogram bars. Options: any valid Matplotlib color.
 
 - **Alpha** (float, optional, default = 0.7):
-    Opacity of the bars.
+    Opacity of the histogram bars (0 to 1). Options: any float in the range [0, 1].
 
 - **Grid** (bool, optional, default = True):
-    Whether to display a grid.
+    Whether to display a grid. Options: `True` or `False`.
 
 - **Figure_Size** (tuple, optional, default = (10, 6)):
-    Size of the figure in inches.
+    Size of the figure in inches. Options: `(width, height)` as positive numbers.
 
 - **Font_Size** (int, optional, default = 12):
-    Font size for title and labels.
+    Font size for title and labels. Options: any positive integer.
 
 - **X_Lim** (tuple, optional, default = None):
-    The limits of the x-axis as a tuple `(min, max)`.
+    The limits of the x-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Y_Lim** (tuple, optional, default = None):
-    The limits of the y-axis as a tuple `(min, max)`.
+    The limits of the y-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Legend** (bool, optional, default = False):
-    Whether to display a legend.
+    Whether to display the legend. Options: `True` or `False`.
 
 - **Legend_Location** (str, optional, default = 'best'):
-    The location of the legend.
+    The location of the legend. Options: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'.
 
 - **Legend_Font_Size** (int, optional, default = 12):
-    Font size for the legend text.
+    Font size for the legend. Options: any positive integer.
+
+- **Horizontal_Lines** (list of float, optional): 
+    List of y-values for horizontal lines to be drawn. Options: any list of floats.
+
+- **Vertical_Lines** (list of float, optional): 
+    List of x-values for vertical lines to be drawn. Options: any list of floats.
+
+- **Annotations** (list of dict, optional): 
+    List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
 
 - **File_Name** (str, optional, default = None):
-    Name for saving the figure.
+    Name for saving the histogram file. Options: any string.
 
 - **File_Format** (str, optional, default = 'png'):
-    Format to save the file.
+    Format for saving the histogram file. Options: 'png', 'jpg', 'pdf', etc.
 
 ########################################################################
 # Create_Bar_Plot
@@ -120,58 +178,65 @@
 
 # Parameters:
 
-- **Categories** (array-like):
-    Categories to be represented on the x-axis.
+- **X** (array-like):
+    The data for the x-axis. This can be a list or array of categories or labels. Options: list or array.
 
-- **Values** (array-like):
-    Heights of the bars corresponding to each category.
+- **Y** (array-like):
+    The data for the y-axis. This should be numeric values corresponding to each category in X. Options: list or array.
 
 - **Title** (str, optional, default = None):
-    The title of the plot.
+    The title of the bar plot. Options: any string.
 
 - **X_Label** (str, optional, default = 'X'):
-    Label for the x-axis.
+    Label for the x-axis. Options: any string.
 
 - **Y_Label** (str, optional, default = 'Y'):
-    Label for the y-axis.
+    Label for the y-axis. Options: any string.
 
-- **Color** (str, optional, default = 'blue'):
-    Color of the bars.
+- **Colors** (list of str, optional): 
+    List of colors for the bars. Options: any valid Matplotlib color.
+
+- **Alpha** (float, optional, default = 0.8):
+    Opacity of the bars (0 to 1). Options: any float in the range [0, 1].
 
 - **Grid** (bool, optional, default = True):
-    Whether to display a grid.
+    Whether to display a grid. Options: `True` or `False`.
 
 - **Figure_Size** (tuple, optional, default = (10, 6)):
-    Size of the figure in inches.
+    Size of the figure in inches. Options: `(width, height)` as positive numbers.
 
 - **Font_Size** (int, optional, default = 12):
-    Font size for title and labels.
-
-- **Orientation** (str, optional, default = 'vertical'):
-    Orientation of the bars. Options:
-    - `'vertical'`: Vertical bars (default).
-    - `'horizontal'`: Horizontal bars.
+    Font size for title and labels. Options: any positive integer.
 
 - **X_Lim** (tuple, optional, default = None):
-    The limits of the x-axis as a tuple `(min, max)`.
+    The limits of the x-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Y_Lim** (tuple, optional, default = None):
-    The limits of the y-axis as a tuple `(min, max)`.
+    The limits of the y-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Legend** (bool, optional, default = False):
-    Whether to display a legend.
+    Whether to display the legend. Options: `True` or `False`.
 
 - **Legend_Location** (str, optional, default = 'best'):
-    The location of the legend.
+    The location of the legend. Options: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'.
 
 - **Legend_Font_Size** (int, optional, default = 12):
-    Font size for the legend text.
+    Font size for the legend. Options: any positive integer.
+
+- **Horizontal_Lines** (list of float, optional): 
+    List of y-values for horizontal lines to be drawn. Options: any list of floats.
+
+- **Vertical_Lines** (list of float, optional): 
+    List of x-values for vertical lines to be drawn. Options: any list of floats.
+
+- **Annotations** (list of dict, optional): 
+    List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
 
 - **File_Name** (str, optional, default = None):
-    Name for saving the figure.
+    Name for saving the bar plot file. Options: any string.
 
 - **File_Format** (str, optional, default = 'png'):
-    Format to save the file.
+    Format for saving the bar plot file. Options: 'png', 'jpg', 'pdf', etc.
 
 ########################################################################
 # Create_Box_Plot
@@ -179,173 +244,185 @@
 
 # Parameters:
 
-- **Data** (array-like, DataFrame):
-    The data to be visualized in the box plot.
+- **Data** (array-like):
+    The data to be plotted in the box plot. This can be a list of arrays or a DataFrame. Options: list, array, or DataFrame.
 
 - **Title** (str, optional, default = None):
-    The title of the plot.
+    The title of the box plot. Options: any string.
 
 - **X_Label** (str, optional, default = 'X'):
-    Label for the x-axis.
+    Label for the x-axis. Options: any string.
 
 - **Y_Label** (str, optional, default = 'Y'):
-    Label for the y-axis.
+    Label for the y-axis. Options: any string.
+
+- **Colors** (list of str, optional): 
+    List of colors for the boxes. Options: any valid Matplotlib color.
 
 - **Grid** (bool, optional, default = True):
-    Whether to display a grid.
+    Whether to display a grid. Options: `True` or `False`.
 
 - **Figure_Size** (tuple, optional, default = (10, 6)):
-    Size of the figure in inches.
+    Size of the figure in inches. Options: `(width, height)` as positive numbers.
 
 - **Font_Size** (int, optional, default = 12):
-    Font size for title and labels.
+    Font size for title and labels. Options: any positive integer.
 
 - **X_Lim** (tuple, optional, default = None):
-    The limits of the x-axis as a tuple `(min, max)`.
+    The limits of the x-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Y_Lim** (tuple, optional, default = None):
-    The limits of the y-axis as a tuple `(min, max)`.
+    The limits of the y-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Legend** (bool, optional, default = False):
-    Whether to display a legend.
+    Whether to display the legend. Options: `True` or `False`.
 
 - **Legend_Location** (str, optional, default = 'best'):
-    The location of the legend.
+    The location of the legend. Options: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'.
 
 - **Legend_Font_Size** (int, optional, default = 12):
-    Font size for the legend text.
+    Font size for the legend. Options: any positive integer.
+
+- **Horizontal_Lines** (list of float, optional): 
+    List of y-values for horizontal lines to be drawn. Options: any list of floats.
+
+- **Vertical_Lines** (list of float, optional): 
+    List of x-values for vertical lines to be drawn. Options: any list of floats.
+
+- **Annotations** (list of dict, optional): 
+    List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
 
 - **File_Name** (str, optional, default = None):
-    Name for saving the figure.
+    Name for saving the box plot file. Options: any string.
 
 - **File_Format** (str, optional, default = 'png'):
-    Format to save the file.
+    Format for saving the box plot file. Options: 'png', 'jpg', 'pdf', etc.
 
 ########################################################################
-# Create_Scatter_Plot_With_Regression
+# Create_Scatter_Plot
 ########################################################################
 
 # Parameters:
 
 - **X** (array-like):
-    The data for the x-axis.
+    The data for the x-axis. Options: list or array.
 
 - **Y** (array-like):
-    The data for the y-axis.
+    The data for the y-axis. Options: list or array.
 
 - **Title** (str, optional, default = None):
-    The title of the plot.
+    The title of the scatter plot. Options: any string.
 
 - **X_Label** (str, optional, default = 'X'):
-    Label for the x-axis.
+    Label for the x-axis. Options: any string.
 
 - **Y_Label** (str, optional, default = 'Y'):
-    Label for the y-axis.
+    Label for the y-axis. Options: any string.
 
-- **Color** (str, optional, default = 'blue'):
-    Color of the scatter points.
+- **Colors** (list of str, optional): 
+    List of colors for the points. Options: any valid Matplotlib color.
+
+- **Alpha** (float, optional, default = 0.6):
+    Opacity of the points (0 to 1). Options: any float in the range [0, 1].
+
+- **Size** (int or list of int, optional, default = 20):
+    Size of the points. Options: any positive integer or a list of sizes corresponding to each point.
 
 - **Grid** (bool, optional, default = True):
-    Whether to display a grid.
+    Whether to display a grid. Options: `True` or `False`.
 
 - **Figure_Size** (tuple, optional, default = (10, 6)):
-    Size of the figure in inches.
+    Size of the figure in inches. Options: `(width, height)` as positive numbers.
 
 - **Font_Size** (int, optional, default = 12):
-    Font size for title and labels.
-
-- **Alpha** (float, optional, default = 1.0):
-    Opacity of the scatter points (0 to 1).
+    Font size for title and labels. Options: any positive integer.
 
 - **X_Lim** (tuple, optional, default = None):
-    The limits of the x-axis as a tuple `(min, max)`.
+    The limits of the x-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Y_Lim** (tuple, optional, default = None):
-    The limits of the y-axis as a tuple `(min, max)`.
+    The limits of the y-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Legend** (bool, optional, default = False):
-    Whether to display a legend.
+    Whether to display the legend. Options: `True` or `False`.
 
 - **Legend_Location** (str, optional, default = 'best'):
-    The location of the legend.
+    The location of the legend. Options: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'.
 
 - **Legend_Font_Size** (int, optional, default = 12):
-    Font size for the legend text.
+    Font size for the legend. Options: any positive integer.
+
+- **Horizontal_Lines** (list of float, optional): 
+    List of y-values for horizontal lines to be drawn. Options: any list of floats.
+
+- **Vertical_Lines** (list of float, optional): 
+    List of x-values for vertical lines to be drawn. Options: any list of floats.
+
+- **Annotations** (list of dict, optional): 
+    List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
 
 - **File_Name** (str, optional, default = None):
-    Name for saving the figure.
+    Name for saving the scatter plot file. Options: any string.
 
 - **File_Format** (str, optional, default = 'png'):
-    Format to save the file.
+    Format for saving the scatter plot file. Options: 'png', 'jpg', 'pdf', etc.
 
 ########################################################################
-# Violin Plot Function Documentation
+# Create_Violin_Plot
 ########################################################################
 
 # Parameters:
 
-- **Data** (array-like, DataFrame):
-    The dataset to plot. It can be a list, array, or pandas DataFrame.
+- **Data** (array-like):
+    The data to be plotted in the violin plot. This can be a list of arrays or a DataFrame. Options: list, array, or DataFrame.
 
 - **Title** (str, optional, default = None):
-    The title of the plot. If not provided, the plot will not have a title.
+    The title of the violin plot. Options: any string.
 
 - **X_Label** (str, optional, default = 'X'):
-    Label for the x-axis.
+    Label for the x-axis. Options: any string.
 
 - **Y_Label** (str, optional, default = 'Y'):
-    Label for the y-axis.
+    Label for the y-axis. Options: any string.
+
+- **Colors** (list of str, optional): 
+    List of colors for the violins. Options: any valid Matplotlib color.
 
 - **Grid** (bool, optional, default = True):
-    Whether to display a grid on the plot. Options:
-    - `True`: Displays the grid.
-    - `False`: Hides the grid.
+    Whether to display a grid. Options: `True` or `False`.
 
 - **Figure_Size** (tuple, optional, default = (10, 6)):
-    The size of the figure as a tuple `(width, height)` in inches.
+    Size of the figure in inches. Options: `(width, height)` as positive numbers.
 
 - **Font_Size** (int, optional, default = 12):
-    The font size for the title, x-axis, and y-axis labels.
+    Font size for title and labels. Options: any positive integer.
 
 - **X_Lim** (tuple, optional, default = None):
-    The limits of the x-axis as a tuple `(min, max)`. If `None`, the limits are determined automatically.
+    The limits of the x-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Y_Lim** (tuple, optional, default = None):
-    The limits of the y-axis as a tuple `(min, max)`. If `None`, the limits are determined automatically.
+    The limits of the y-axis as a tuple `(min, max)`. Options: two numbers indicating limits.
 
 - **Legend** (bool, optional, default = False):
-    Whether to display a legend on the plot. Options:
-    - `True`: Displays the legend.
-    - `False`: No legend is shown.
+    Whether to display the legend. Options: `True` or `False`.
 
 - **Legend_Location** (str, optional, default = 'best'):
-    The location of the legend. Common options include:
-    - `'best'`: Automatically choose the best location.
-    - `'upper right'`, `'upper left'`, `'lower left'`, `'lower right'`
-    - `'center'`, `'center left'`, `'center right'`
+    The location of the legend. Options: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'.
 
 - **Legend_Font_Size** (int, optional, default = 12):
-    The font size for the legend text.
+    Font size for the legend. Options: any positive integer.
 
-- **Split** (bool, optional, default = False):
-    Whether to split the violins for different categories. Useful if the data contains multiple categories to compare distributions. Options:
-    - `True`: Split the violins.
-    - `False`: No splitting (default).
+- **Horizontal_Lines** (list of float, optional): 
+    List of y-values for horizontal lines to be drawn. Options: any list of floats.
 
-- **Inner** (str, optional, default = 'box'):
-    Defines the marks to plot inside the violins. Options:
-    - `'box'`: A box plot inside the violin.
-    - `'point'`: Individual data points inside the violin.
-    - `'stick'`: A stick plot (like rug plot) inside the violin.
-    - `None`: No inner plot.
+- **Vertical_Lines** (list of float, optional): 
+    List of x-values for vertical lines to be drawn. Options: any list of floats.
+
+- **Annotations** (list of dict, optional): 
+    List of annotations to be added to the plot. Each dictionary should contain 'text', 'xy', 'xytext', and optional 'arrowprops'. Options: any list of dictionaries.
 
 - **File_Name** (str, optional, default = None):
-    Name for saving the figure. If `None`, the figure will not be saved.
+    Name for saving the violin plot file. Options: any string.
 
 - **File_Format** (str, optional, default = 'png'):
-    The format to save the file in. Options include:
-    - `'png'`: Portable Network Graphics (default).
-    - `'pdf'`: PDF format.
-    - `'svg'`: Scalable Vector Graphics.
-    - `'jpg'`: JPEG format.
-
+    Format for saving the violin plot file. Options: 'png', 'jpg', 'pdf', etc.
